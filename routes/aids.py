@@ -2,21 +2,26 @@ from flask import Blueprint, request
 
 from config.db import db
 from models.Aid import Aid
+from models.User import User
 
 
 aids = Blueprint('aids', __name__)
 
-@aids.route('/aids', methods = ['POST'])
-def register_users():
+@aids.route('/aids/<id>', methods = ['POST'])
+def ayudas(id):
 
-    username = request.json["username"]
-    password = request.json["password"]
+    get_user =  User.query.get(id)
 
-    new_aid = Aid(username, password)
+    user = get_user.username
+   
+    latitude_user = request.json["latitude"]
+    length_user = request.json["length"]
+    type_aid = request.json["type_aid"]
 
+    new_aid = Aid(user, latitude_user, length_user, type_aid)
     db.session.add(new_aid)
     db.session.commit()
 
-    return {"status": "Aid registered"}
+    return {"status": "task saved"}
 
 
