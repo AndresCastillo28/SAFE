@@ -1,6 +1,6 @@
 from flask import Flask
 from routes.users import users
-from config.db import DATABASE_CONNECTION_URI
+from config.config import DATABASE_CONNECTION_URI
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
