@@ -3,13 +3,12 @@ from config.db import db
 class User(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
- 
-    admin = db.Column(db.Boolean)
-    username = db.Column(db.String(100))
+    email = db.Column(db.String(100))
+    cedula = db.Column(db.String(100))
     password = db.Column(db.String(100))
 
-    def __init__(self, admin, username, password):
+    def __init__(self, email, cedula ,password):
     
-        self.admin = admin
-        self.username = username
+        self.email = email
+        self.cedula = cedula
         self.password = password
